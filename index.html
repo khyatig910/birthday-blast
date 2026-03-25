@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Happy Birthday 🎂</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+
+<style>
+body {
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ffe0ec, #e0c3fc);
+    overflow-x: hidden;
+}
+
+/* ENTRY SCREEN */
+#entry {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 999;
+}
+
+input {
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    margin-top: 10px;
+}
+
+button {
+    padding: 10px 15px;
+    margin: 5px;
+    border-radius: 15px;
+    border: none;
+    background: #ff4d88;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.1);
+    background: black;
+}
+
+/* MAIN CONTENT */
+#main {
+    display: none;
+}
+
+h1 {
+    font-family: 'Pacifico', cursive;
+    font-size: 50px;
+    color: #ff4d88;
+}
+
+p {
+    width: 70%;
+    margin: auto;
+    background: rgba(255,255,255,0.7);
+    padding: 20px;
+    border-radius: 20px;
+}
+
+/* QUIZ */
+.quiz {
+    background: white;
+    padding: 20px;
+    margin-top: 30px;
+    border-radius: 20px;
+    display: inline-block;
+}
+
+/* SURPRISE */
+.surprise {
+    display: none;
+    font-size: 22px;
+    color: purple;
+    white-space: pre-line;
+}
+
+/* HEARTS */
+.heart {
+    position: fixed;
+    bottom: -10px;
+    animation: floatUp 6s linear infinite;
+}
+
+@keyframes floatUp {
+    0% {transform: translateY(0); opacity: 1;}
+    100% {transform: translateY(-100vh); opacity: 0;}
+}
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+</head>
+
+<body>
+
+<!-- ENTRY SCREEN -->
+<div id="entry">
+    <h2>🔐 Enter Your Name</h2>
+    <input id="nameInput" placeholder="Your name...">
+    <button onclick="enterSite()">Enter 💖</button>
+</div>
+
+<!-- MAIN WEBSITE -->
+<div id="main">
+
+<h1 id="typing"></h1>
+
+<iframe width="350" height="200"
+src="https://www.youtube.com/embed/ho08YLYDM88"
+frameborder="0" allowfullscreen>
+</iframe>
+
+<br><br>
+
+<button onclick="playMusic()">🎵 Play Song</button>
+<audio id="music">
+<source src="https://www.bensound.com/bensound-music/bensound-happyrock.mp3">
+</audio>
+
+<p>
+Dear Soumya 💖,<br><br>
+
+I honestly don’t have enough words for how special you are to me 😭  
+You’re my comfort person, my chaos partner, and my favorite human ever.  
+
+From laughing at the dumbest things to sharing everything, life is just better with you ✨  
+
+I’m so lucky to have you and I hope you always stay this amazing, kind, crazy person 💕  
+
+Love you forever,  
+— Khyati 💌
+</p>
+
+<div>
+<h2 style="font-family:Pacifico;">💖 Why You're Amazing 💖</h2>
+<p>
+✨ You make everything fun<br>
+✨ You understand me<br>
+✨ You’re irreplaceable<br>
+✨ You’re kind & beautiful<br>
+✨ You’re literally the best 💯
+</p>
+</div>
+
+<div class="quiz">
+<h2>🧠 Best Friend Quiz</h2>
+
+<p>1. Who is your favorite person?</p>
+<button onclick="check(true)">Khyati 😌</button>
+<button onclick="check(false)">Others 😭</button>
+
+<p>2. Your vibe?</p>
+<button onclick="check(true)">Chaotic 🔥</button>
+<button onclick="check(false)">Calm 😴</button>
+
+<p>3. What do we do best?</p>
+<button onclick="check(true)">Laugh 😂</button>
+<button onclick="check(false)">Study 🤡</button>
+
+<p>4. Best duo?</p>
+<button onclick="check(true)">US 😎</button>
+<button onclick="check(false)">Others 🙄</button>
+
+<p>5. You are?</p>
+<button onclick="check(true)">Iconic 💅</button>
+<button onclick="check(false)">Normal 😶</button>
+
+<p id="score"></p>
+</div>
+
+<button onclick="showSurprise()">🎁 Open Your Surprise</button>
+<div id="surprise" class="surprise"></div>
+
+</div>
+
+<script>
+function enterSite() {
+    let name = document.getElementById("nameInput").value.toLowerCase();
+    if(name === "soumya") {
+        document.getElementById("entry").style.display = "none";
+        document.getElementById("main").style.display = "block";
+        startEverything();
+    } else {
+        alert("Only Soumya allowed 😤💖");
+    }
+}
+
+let text = "🎉 Happy Birthday Soumya 🎉";
+let i = 0;
+
+function typingEffect() {
+    if (i < text.length) {
+        document.getElementById("typing").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typingEffect, 70);
+    }
+}
+
+let score = 0;
+function check(correct) {
+    if (correct) score++;
+    document.getElementById("score").innerHTML = "Score: " + score + "/5 😎";
+}
+
+function playMusic() {
+    document.getElementById("music").play();
+}
+
+function showSurprise() {
+    let message = "Soumya... 💖\n\nYou’re not just my best friend.\nYou’re my home, my happiness, my everything 😭\n\nNo matter what happens, I’m always with you.\n\n— Khyati 💌";
+
+    let i = 0;
+    let box = document.getElementById("surprise");
+    box.style.display = "block";
+    box.innerHTML = "";
+
+    function type() {
+        if (i < message.length) {
+            box.innerHTML += message.charAt(i);
+            i++;
+            setTimeout(type, 40);
+        }
+    }
+
+    type();
+    confetti({particleCount: 200, spread: 100});
+}
+
+/* HEARTS */
+function createHearts() {
+    setInterval(() => {
+        let heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "💖";
+        heart.style.left = Math.random()*100 + "vw";
+        heart.style.fontSize = (Math.random()*20+20)+"px";
+        document.body.appendChild(heart);
+        setTimeout(()=>{heart.remove();},6000);
+    }, 300);
+}
+
+function startConfetti() {
+    setInterval(()=>{confetti()},3000);
+}
+
+function startEverything() {
+    typingEffect();
+    createHearts();
+    startConfetti();
+}
+</script>
+
+</body>
+</html>
